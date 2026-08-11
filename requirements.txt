@@ -1,0 +1,39 @@
+# TaskFlow API - dependências (versões fixadas e testadas em conjunto)
+# Python 3.11+
+
+# --- Produção ---
+# Framework web ASGI com validação via Pydantic e geração automática de OpenAPI/Swagger.
+fastapi==0.115.14
+
+# Servidor ASGI usado para executar a aplicação em desenvolvimento e produção.
+# O extra [standard] instala uvloop (loop C) e httptools (parser HTTP rápido).
+uvicorn[standard]==0.32.1
+
+# ORM com API 2.x moderna (select(), Session). Suporte oficial a SQLite.
+sqlalchemy==2.0.36
+
+# Validação e serialização de dados (Schemas da API).
+pydantic==2.9.2
+
+# Lê configurações de variáveis de ambiente / .env com tipagem forte (extensão oficial Pydantic).
+pydantic-settings==2.6.1
+
+# Migrations de schema: versiona a estrutura do banco, suporta upgrade/downgrade.
+# Substitui o ``Base.metadata.create_all`` no startup da aplicação.
+alembic==1.14.0
+
+# --- Desenvolvimento / testes ---
+# Runner de testes.
+pytest==8.3.5
+
+# Cliente HTTP usado pelo TestClient do FastAPI para testar endpoints sem subir servidor.
+httpx==0.27.2
+
+# Suporte a testes assíncronos (rotas async do FastAPI).
+pytest-asyncio==0.24.0
+
+# Mede a cobertura de código pelos testes. Gera relatórios (term, HTML, XML).
+pytest-cov==6.0.0
+
+# Linter + formatter ultrarrápido (substitui flake8 + isort + black em uma ferramenta só).
+ruff==0.8.6

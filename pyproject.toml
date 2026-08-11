@@ -1,0 +1,40 @@
+[tool.ruff]
+# Mesma regra do projeto: linha até 100 colunas.
+line-length = 100
+# Python alvo — mínimo do projeto (3.11+).
+target-version = "py311"
+# Diretórios que o ruff deve inspecionar.
+src = ["app", "tests"]
+# Exclui arquivos gerados automaticamente pelo Alembic
+# (templates, migrations) — não fazem parte do nosso código de aplicação.
+extend-exclude = ["app/migrations/versions/*.py", "app/migrations/script.py.mako"]
+
+[tool.ruff.lint]
+# Conjunto enxuto de regras: erros reais e más-práticas comuns.
+# Evita regras estéticas que geram ruído sem ganho pedagógico.
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort (imports ordenados)
+    "B",    # flake8-bugbear (possíveis bugs)
+    "UP",   # pyupgrade (sintaxe moderna)
+    "N",    # pep8-naming
+    "SIM",  # flake8-simplify
+    "RUF",  # regras próprias do ruff
+]
+ignore = [
+    "E501",  # line-too-long — lidamos com formatador (linha 100 já é tratada)
+    "B008",  # do not perform function calls in argument defaults — usamos Depends()
+    "SIM108",# use ternary operator — preferimos if/else explícito em didática
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Testes podem usar asserts longos, reimportações e nomes em CamelCase
+# (ex.: TestingSessionLocal) por herança de padrões SQLAlchemy.
+"tests/**" = ["F401", "F811", "N806"]
+
+[tool.ruff.format]
+# Estilo de formatação (compatível com black na essência).
+quote-style = "double"
+indent-style = "space"
