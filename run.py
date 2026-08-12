@@ -9,6 +9,7 @@ mas com a vantagem de carregar as configurações do nosso módulo.
 
 Em produção, prefira chamar o uvicorn diretamente:
     uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
+Api Finalizada... 
 """
 
 from __future__ import annotations
